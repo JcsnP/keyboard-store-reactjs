@@ -8,7 +8,10 @@ class App extends Component {
     super(props);
     this.state = {
       amount: 0,
-      price: 0
+      price: 0,
+      keyboard1: 5,
+      keyboard2: 5,
+      keyboard3: 5
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -16,13 +19,20 @@ class App extends Component {
   handleClick(event) {
     event.preventDefault();
     
+    let name = event.target.name;
     let value = parseInt(event.target.value);
-    let price = this.state.price;
-    let amount = this.state.amount;
-    this.setState({
-      amount: amount + 1,
-      price: price + value
-    });
+    let kbname = name;
+    if(this.state[name] > 0) {
+      this.setState({
+        amount: this.state.amount + 1,
+        price: this.state.price + value,
+        [name]: this.state[name] - 1
+      });
+    } else {
+      alert("Out of stock");
+    }
+    
+    console.log(name, value, this.state.keyboard1);
   }
 
   render() {
@@ -38,7 +48,8 @@ class App extends Component {
               <div class="card-body">
                 <h5 class="card-title">Keyboard XD</h5>
                 <p class="card-text">$ 260</p>
-                <button type="button" class="btn btn-primary btn-block" value="260" onClick={this.handleClick}>Buy Now!</button>
+                <p>Quantity: {this.state.keyboard1}</p>
+                <button type="button" class="btn btn-primary btn-block" name="keyboard1" value="260" onClick={this.handleClick}>Buy Now!</button>
               </div>
             </div>
           </div>
@@ -49,7 +60,8 @@ class App extends Component {
               <div class="card-body">
                 <h5 class="card-title">Keyboard XD</h5>
                 <p class="card-text">$ 300</p>
-                <button type="button" class="btn btn-primary btn-block" value="300" onClick={this.handleClick}>Buy Now!</button>
+                <p>Quantity: {this.state.keyboard2}</p>
+                <button type="button" class="btn btn-primary btn-block" name="keyboard2" value="300" onClick={this.handleClick}>Buy Now!</button>
               </div>
             </div>
           </div>
@@ -60,7 +72,8 @@ class App extends Component {
               <div class="card-body">
                 <h5 class="card-title">Keyboard XD</h5>
                 <p class="card-text">$ 350</p>
-                <button type="button" class="btn btn-primary btn-block" value="350" onClick={this.handleClick}>Buy Now!</button>
+                <p>Quantity: {this.state.keyboard3}</p>
+                <button type="button" class="btn btn-primary btn-block" name="keyboard3" value="350" onClick={this.handleClick}>Buy Now!</button>
               </div>
             </div>
           </div>  
