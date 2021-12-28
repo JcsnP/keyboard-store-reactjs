@@ -2,18 +2,26 @@
 
 body {
     font-family: 'Fira Sans', sans-serif; /*extra-light 200, medium 500*/
+    background-color: #3B3B3B;
+    color: #FFF;
 }
 
 .container {
-    width: 992px;
+    max-width: 992px;
 }
 
 .card {
     width: 100%;
+    background-color: #3B3B3B;
+    color: #FFF;
+    border: 2px solid #FFF;
+    border-radius: 8px;
 }
 
 .card img {
     width: 100%;
+    cursor: pointer;
+    padding: 10px;
 }
 
 .card button {
@@ -35,3 +43,17 @@ body {
 .summary img {
     width: 50%;
 }
+
+.price {
+    color: #D4AF37;
+}
+
+::-moz-selection { 
+    color: #fcc71b;
+    background: #000;
+  }
+  
+  ::selection {
+    color: #fcc71b;
+    background: #000;
+  }
