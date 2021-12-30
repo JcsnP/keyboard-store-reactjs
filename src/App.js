@@ -3,6 +3,8 @@ import './App.css';
 import { Component } from 'react';
 import './style.css'
 
+
+
 class App extends Component {
   constructor(props) {
 	super(props);
@@ -29,6 +31,7 @@ class App extends Component {
   }
 
   render() {
+	  // console.log(this.state.keyboard1, this.state.keyboard2, this.state.keyboard3, this.state.amount);
 	return (
 	  <div className="container">
 		<h3>Mechanical Keyboard</h3>
