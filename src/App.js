@@ -2,20 +2,18 @@
 import './App.css';
 import { Component } from 'react';
 import './style.css';
-import List from './List';
+import data from './Items';
+import ItemCard from './ItemCard';
 
 class App extends Component {
   constructor(props) {
 	super(props);
 	this.state = {
-	  amount: 0,					// price
-	  price: 0,							// total
+	  amount: 0,					// total
+	  price: 0,							// price
 	  keyboard1: 0,
 	  keyboard2: 0,
-	  keyboard3: 0,
-	  cart: [
-		
-	  ],
+	  keyboard3: 0
 	}
 
 	this.handleClick = this.handleClick.bind(this);
@@ -28,22 +26,12 @@ class App extends Component {
 
 	let name = event.target.name;
 	let value = parseInt(event.target.value);
-	let cartItem = name === 'keyboard1' ? 'Gradient' : name === 'keyboard2' ? 'Sweet Candy' : 'Halloween';
-	let newItem = {
-		name: cartItem,
-		price: value,
-		id: Date.now()
-	}
 	
 	this.setState({
 		amount: this.state.amount + 1,
 		price: this.state.price + value,
 		[name]: this.state[name] + 1,
 	})
-
-	this.setState(state => ({
-		cart: state.cart.concat(newItem)
-	}));
   }
 
   clearItems() {
@@ -53,10 +41,7 @@ class App extends Component {
 		price: 0,
 		keyboard1: 0,
 		keyboard2: 0,
-		keyboard3: 0,
-		cart: [							// clear items in cart
-
-		]
+		keyboard3: 0
 	});
   }
 
@@ -69,66 +54,27 @@ class App extends Component {
 	return (
 	  <div className="container">
 		<h3>Mechanical Keyboard</h3>
-  
+
 		<div className="row">
-
-		  <div className="col-12 col-sm-4">
-			<div className="card">
-			  <img src={require('./assets/kb1.jpg')} className="card-img-top" alt="..." />
-			  <div className="card-body">
-				<h5 className="card-title">V3 Mechanical Keyboard - Gradient</h5>
-				<p className="card-text price">$ 260</p>
-				<p>Quantity: {this.state.keyboard1}</p>
-				<button type="button" className="btn btn-primary btn-block" name="keyboard1" value="260" onClick={this.handleClick}>Buy Now!</button>
-			  </div>
-			</div>
-		  </div>
-
-		  <div className="col-12 col-sm-4">
-			<div className="card">
-			  <img src={require('./assets/kb2.jpg')}  className="card-img-top" alt="..." />
-			  <div className="card-body">
-				<h5 className="card-title">V3 Mechanical Keyboard - Sweet Candy</h5>
-				<p className="card-text price">$ 300</p>
-				<p>Quantity: {this.state.keyboard2}</p>
-				<button type="button" className="btn btn-primary btn-block" name="keyboard2" value="300" onClick={this.handleClick}>Buy Now!</button>
-			  </div>
-			</div>
-		  </div>
-
-		  <div className="col-12 col-sm-4">
-			<div className="card">
-			  <img src={require('./assets/kb3.jpg')} className="card-img-top" alt="..." />
-			  <div className="card-body">
-				<h5 className="card-title">V3 Mechanical Keyboard - Halloween</h5>
-				<p className="card-text price">$ 350</p>
-				<p>Quantity: {this.state.keyboard3}</p>
-				<button type="button" className="btn btn-primary btn-block" name="keyboard3" value="350" onClick={this.handleClick}>Buy Now!</button>
-			  </div>
-			</div>
-		  </div>  
-
-		</div>
+		{data.product.map((item, index) => {
+					return(
+						<ItemCard title={item.title} img={item.img} price={item.price} quantity={item.quantity} key={index} />
+					)
+				})}
+		</div>		 
 
 		<div className="card summary mt-2">
 		  <div className="card-body summary-body">
-			<div className="row">
-				<div className="col-8">
-					<List items={this.state.cart} />
-				</div>
-				<div className="col-4">
-					<h5>Total: 	  {this.state.price} <i className="fas fa-dollar-sign"></i></h5>
-					<h5>Amount:   {this.state.amount} <i className="fas fa-shopping-cart"></i></h5> 
-					<div className="row">
-						<div className="col">
-							<button type="button" class="btn btn-light btn-block" onClick={this.checkOut}>Checkout</button>
-						</div>
-						<div className="col">
-							<button type="button" className="btn btn-outline-warning btn-block" onClick={this.clearItems}>Clear</button> 
-						</div>
+		  <h5>Total: 	  {this.state.price.toLocaleString("en-US")} <i className="fas fa-dollar-sign"></i></h5>
+		  	<h5>Amount:   {this.state.amount} <i className="fas fa-shopping-cart"></i></h5> 
+				<div className="row">
+					<div className="col">
+						<button type="button" class="btn btn-light btn-block" onClick={this.checkOut}>Checkout</button>
+					</div>
+					<div className="col">
+						<button type="button" className="btn btn-outline-warning btn-block" onClick={this.clearItems}>Clear</button> 
 					</div>
 				</div>
-			</div>
 		  </div>
 		</div>
 	  </div>
@@ -137,9 +83,6 @@ class App extends Component {
 }
 
 export default App;
-
-// <button type="button" className="btn btn-warning btn-block" onClick={this.clearItems}>Clear</button> 
-
 
 // 63102230 Chitsanupong Paenyoi
 // 63114607 Sarith Issara

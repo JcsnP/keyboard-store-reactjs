@@ -16,6 +16,7 @@ body {
     color: #FFF;
     border: 2px solid #FFF;
     border-radius: 8px;
+    
 }
 
 .card img {
@@ -24,6 +25,11 @@ body {
     padding: 10px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    transition: all .1s;
+}
+
+.card img:hover {
+    filter: opacity(80%);
 }
 
 .card button {
