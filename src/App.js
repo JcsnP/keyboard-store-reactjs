@@ -2,7 +2,6 @@
 import './App.css';
 import { Component } from 'react';
 import './style.css';
-import List from './List';
 
 class App extends Component {
   constructor(props) {
@@ -111,24 +110,17 @@ class App extends Component {
 		</div>
 
 		<div className="card summary mt-2">
-		  <div className="card-body summary-body">
-			<div className="row">
-				<div className="col-8">
-					<List items={this.state.cart} />
-				</div>
-				<div className="col-4">
-					<h5>Total: 	  {this.state.price} <i className="fas fa-dollar-sign"></i></h5>
-					<h5>Amount:   {this.state.amount} <i className="fas fa-shopping-cart"></i></h5> 
-					<div className="row">
-						<div className="col">
-							<button type="button" class="btn btn-light btn-block" onClick={this.checkOut}>Checkout</button>
+		<div className="card-body summary-body">
+		  <h5>Total: 	  {this.state.price} <i className="fas fa-dollar-sign"></i></h5>
+			<h5>Amount:   {this.state.amount} <i className="fas fa-shopping-cart"></i></h5> 
+				<div className="row">
+					<div className="col">
+						<button type="button" class="btn btn-light btn-block" onClick={this.checkOut}>Checkout</button>
 						</div>
 						<div className="col">
 							<button type="button" className="btn btn-outline-warning btn-block" onClick={this.clearItems}>Clear</button> 
 						</div>
 					</div>
-				</div>
-			</div>
 		  </div>
 		</div>
 	  </div>
@@ -137,9 +129,6 @@ class App extends Component {
 }
 
 export default App;
-
-// <button type="button" className="btn btn-warning btn-block" onClick={this.clearItems}>Clear</button> 
-
 
 // 63102230 Chitsanupong Paenyoi
 // 63114607 Sarith Issara
