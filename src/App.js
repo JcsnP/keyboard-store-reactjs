@@ -11,10 +11,7 @@ class App extends Component {
 	  price: 0,							// total
 	  keyboard1: 0,
 	  keyboard2: 0,
-	  keyboard3: 0,
-	  cart: [
-		
-	  ],
+	  keyboard3: 0
 	}
 
 	this.handleClick = this.handleClick.bind(this);
@@ -27,22 +24,12 @@ class App extends Component {
 
 	let name = event.target.name;
 	let value = parseInt(event.target.value);
-	let cartItem = name === 'keyboard1' ? 'Gradient' : name === 'keyboard2' ? 'Sweet Candy' : 'Halloween';
-	let newItem = {
-		name: cartItem,
-		price: value,
-		id: Date.now()
-	}
 	
 	this.setState({
 		amount: this.state.amount + 1,
 		price: this.state.price + value,
 		[name]: this.state[name] + 1,
 	})
-
-	this.setState(state => ({
-		cart: state.cart.concat(newItem)
-	}));
   }
 
   clearItems() {
@@ -52,10 +39,7 @@ class App extends Component {
 		price: 0,
 		keyboard1: 0,
 		keyboard2: 0,
-		keyboard3: 0,
-		cart: [							// clear items in cart
-
-		]
+		keyboard3: 0
 	});
   }
 
@@ -73,7 +57,7 @@ class App extends Component {
 
 		  <div className="col-12 col-sm-4">
 			<div className="card">
-			  <img src={require('./assets/kb1.jpg')} className="card-img-top" alt="..." />
+			  <img src={require('./assets/kb1.jpg')} className="card-img-top" alt="kb1" />
 			  <div className="card-body">
 				<h5 className="card-title">V3 Mechanical Keyboard - Gradient</h5>
 				<p className="card-text price">$ 260</p>
@@ -85,7 +69,7 @@ class App extends Component {
 
 		  <div className="col-12 col-sm-4">
 			<div className="card">
-			  <img src={require('./assets/kb2.jpg')}  className="card-img-top" alt="..." />
+			  <img src={require('./assets/kb2.jpg')}  className="card-img-top" alt="kb2" />
 			  <div className="card-body">
 				<h5 className="card-title">V3 Mechanical Keyboard - Sweet Candy</h5>
 				<p className="card-text price">$ 300</p>
@@ -97,7 +81,7 @@ class App extends Component {
 
 		  <div className="col-12 col-sm-4">
 			<div className="card">
-			  <img src={require('./assets/kb3.jpg')} className="card-img-top" alt="..." />
+			  <img src={require('./assets/kb3.jpg')} className="card-img-top" alt="kb3" />
 			  <div className="card-body">
 				<h5 className="card-title">V3 Mechanical Keyboard - Halloween</h5>
 				<p className="card-text price">$ 350</p>
@@ -105,8 +89,7 @@ class App extends Component {
 				<button type="button" className="btn btn-primary btn-block" name="keyboard3" value="350" onClick={this.handleClick}>Buy Now!</button>
 			  </div>
 			</div>
-		  </div>  
-
+		  </div> 
 		</div>
 
 		<div className="card summary mt-2">
@@ -115,7 +98,7 @@ class App extends Component {
 			<h5>Amount:   {this.state.amount} <i className="fas fa-shopping-cart"></i></h5> 
 				<div className="row">
 					<div className="col">
-						<button type="button" class="btn btn-light btn-block" onClick={this.checkOut}>Checkout</button>
+						<button type="button" className="btn btn-light btn-block" onClick={this.checkOut}>Checkout</button>
 						</div>
 						<div className="col">
 							<button type="button" className="btn btn-outline-warning btn-block" onClick={this.clearItems}>Clear</button> 
