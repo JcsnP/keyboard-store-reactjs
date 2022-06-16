@@ -75,6 +75,7 @@ class App extends Component {
 						<button type="button" className="btn btn-outline-warning btn-block" onClick={this.clearItems}>Clear</button> 
 					</div>
 				</div>
+			</div>
 		  </div>
 	  </div>
 	);
